@@ -1,0 +1,37 @@
+description = "Utilities for Geb-based browser tests of Tapestry applications"
+
+group = "de.eddyson"
+version = "0.18.0-SNAPSHOT"
+
+apply plugin: 'groovy'
+
+repositories {
+  jcenter()
+}
+
+sourceCompatibility = '1.7'
+
+task sourceJar(type: Jar) {
+  dependsOn classes
+  classifier "sources"
+  from sourceSets.main.allSource
+}
+
+artifacts {
+  archives sourceJar
+}
+
+ext.versions=[
+  tapestry: '5.4-beta-35',
+  geb: '0.12.2',
+  spock: '1.0-groovy-2.4',
+  selenium: '2.47.1']
+
+dependencies {
+   compile "org.apache.tapestry:tapestry-runner:$versions.tapestry"
+   compile "org.apache.tapestry:tapestry-core:$versions.tapestry"
+   compile "org.gebish:geb-spock:$versions.geb"
+   compile "org.spockframework:spock-core:$versions.spock"
+   compile "org.seleniumhq.selenium:selenium-support:$versions.selenium"
+   
+}
