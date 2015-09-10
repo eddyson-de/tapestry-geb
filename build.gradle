@@ -1,9 +1,10 @@
 description = "Utilities for Geb-based browser tests of Tapestry applications"
 
 group = "de.eddyson"
-version = "0.18.0-SNAPSHOT"
+version = "0.18.0"
 
 apply plugin: 'groovy'
+apply plugin: 'maven'
 
 repositories {
   jcenter()
