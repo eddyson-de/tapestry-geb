@@ -2,6 +2,7 @@
 Use Geb (http://www.gebish.org/) to test Tapestry (http://tapestry.apache.org/) web applications.
 
 This library provides basic integration for testing Tapestry webapps with Geb.
+The original idea was cheekily stolen from https://tawus.wordpress.com/2012/08/03/spock-runjetty/.
 
 ## Usage
 
