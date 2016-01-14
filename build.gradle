@@ -1,7 +1,11 @@
+plugins {
+    id "com.jfrog.bintray" version "1.5"
+}
+
 description = "Utilities for Geb-based browser tests of Tapestry applications"
 
 group = "de.eddyson"
-version = "0.21.0"
+version = "0.22.0"
 
 apply plugin: 'groovy'
 apply plugin: 'maven'
@@ -23,10 +27,10 @@ artifacts {
 }
 
 ext.versions=[
-  tapestry: '5.4-beta-35',
+  tapestry: '5.4.0',
   geb: '0.12.2',
   spock: '1.0-groovy-2.4',
-  selenium: '2.48.2']
+  selenium: '2.49.0']
 
 dependencies {
    compile "org.apache.tapestry:tapestry-runner:$versions.tapestry"
@@ -35,4 +39,15 @@ dependencies {
    compile "org.spockframework:spock-core:$versions.spock"
    compile "org.seleniumhq.selenium:selenium-support:$versions.selenium"
    
+}
+
+bintray {
+    user = project.properties.bintrayUser
+    key = project.properties.bintrayAPIKey
+    configurations = ['archives']
+    publish = true
+    pkg {
+        repo = 'maven'
+        name = 'de.eddyson:tapestry-geb'
+    }
 }
