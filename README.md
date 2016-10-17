@@ -15,8 +15,8 @@ respositories {
 }
 
 dependencies {
-  testCompile 'de.eddyson:tapestry-geb:0.29.0'
-  testCompile "org.seleniumhq.selenium:selenium-firefox-driver:2.53.1"
+  testCompile 'de.eddyson:tapestry-geb:0.30.0'
+  testCompile "org.seleniumhq.selenium:selenium-firefox-driver:3.0.0"
 }
 
 
