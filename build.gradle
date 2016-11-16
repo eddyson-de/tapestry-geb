@@ -1,5 +1,5 @@
 plugins {
-    id "com.jfrog.bintray" version "1.7.1"
+    id "com.jfrog.bintray" version "1.7.3"
 }
 
 description = "Utilities for Geb-based browser tests of Tapestry applications"
