@@ -5,7 +5,7 @@ plugins {
 description = "Utilities for Geb-based browser tests of Tapestry applications"
 
 group = "de.eddyson"
-version = "0.30.2"
+version = "0.31.0"
 
 apply plugin: 'groovy'
 apply plugin: 'maven'
