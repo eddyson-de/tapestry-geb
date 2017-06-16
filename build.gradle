@@ -29,7 +29,7 @@ artifacts {
 ext.versions=[
   tapestry: '5.4.1',
   geb: '1.1.1',
-  spock: '1.0-groovy-2.4',
+  spock: '1.1-groovy-2.4',
   selenium: '3.4.0']
 
 dependencies {
