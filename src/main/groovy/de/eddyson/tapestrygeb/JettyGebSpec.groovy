@@ -7,6 +7,8 @@ import javax.servlet.ServletContext;
 import org.apache.tapestry5.TapestryFilter;
 import org.apache.tapestry5.ioc.Registry;
 import org.eclipse.jetty.webapp.WebAppContext;
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import geb.spock.GebReportingSpec
 import groovy.transform.TypeChecked
@@ -14,6 +16,8 @@ import groovy.transform.TypeChecked
 @RunJetty
 @TypeChecked
 abstract class JettyGebSpec extends GebReportingSpec {
+
+  protected static Logger logger = LoggerFactory.getLogger(JettyGebSpec)
 
   Registry getRegistry(){
     WebAppContext webappContext = (WebAppContext) JettyExtension.runner.server.handler
@@ -32,10 +36,8 @@ abstract class JettyGebSpec extends GebReportingSpec {
   protected RunJetty getRunJettyAnnotation() {
     RunJetty runJetty = this.class.getAnnotation(RunJetty);
     if (runJetty == null) {
-
       runJetty = JettyGebSpec.getAnnotation(RunJetty.class);
     }
-
     return runJetty;
   }
 
@@ -50,7 +52,7 @@ abstract class JettyGebSpec extends GebReportingSpec {
       logEntries.each { println(it) }
       println "END WebDriver $BROWSER logs for $specName.$iterationName"
     } catch (error) {
-      error.printStackTrace()
+      logger.warn("Failed to retrieve browser console logs: {}", error.message)
     }
   }
 }
