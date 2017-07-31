@@ -1,5 +1,7 @@
 package de.eddyson.tapestrygeb
 
+import static org.openqa.selenium.logging.LogType.BROWSER
+
 import javax.servlet.ServletContext;
 
 import org.apache.tapestry5.TapestryFilter;
@@ -7,20 +9,22 @@ import org.apache.tapestry5.ioc.Registry;
 import org.eclipse.jetty.webapp.WebAppContext;
 
 import geb.spock.GebReportingSpec
+import groovy.transform.TypeChecked
 
 @RunJetty
+@TypeChecked
 abstract class JettyGebSpec extends GebReportingSpec {
-  
+
   Registry getRegistry(){
-    WebAppContext webappContext = JettyExtension.runner.server.handler
+    WebAppContext webappContext = (WebAppContext) JettyExtension.runner.server.handler
     ServletContext servletContext = webappContext.getServletContext()
-    servletContext.getAttribute(TapestryFilter.REGISTRY_CONTEXT_NAME)
+    (Registry) servletContext.getAttribute(TapestryFilter.REGISTRY_CONTEXT_NAME)
   }
 
   def getService(Class serviceInterface){
     getRegistry().getService(serviceInterface)
   }
-  
+
   def setup() {
     RunJetty runJetty = getRunJettyAnnotation()
   }
@@ -33,5 +37,20 @@ abstract class JettyGebSpec extends GebReportingSpec {
     }
 
     return runJetty;
+  }
+
+  // from https://gist.github.com/antony/5bc8d768946972ab0a2bfca57b857313
+  @TypeChecked
+  void cleanup() {
+    def specName = specificationContext.currentSpec.name
+    def iterationName = specificationContext.currentIteration.name
+    try {
+      def logEntries = browser.driver.manage().logs().get(BROWSER).all
+      println "START WebDriver $BROWSER logs for $specName.$iterationName"
+      logEntries.each { println(it) }
+      println "END WebDriver $BROWSER logs for $specName.$iterationName"
+    } catch (error) {
+      error.printStackTrace()
+    }
   }
 }
