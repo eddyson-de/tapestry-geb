@@ -10,7 +10,7 @@ A basic usage example to load an application's Index page and check the page tit
 
 ### `build.gradle`:
 ```groovy
-respositories {
+repositories {
   jcenter()
 }
 
