@@ -5,7 +5,7 @@ plugins {
 description = "Utilities for Geb-based browser tests of Tapestry applications"
 
 group = "de.eddyson"
-version = "0.38.0"
+version = "0.39.0"
 
 apply plugin: 'groovy'
 apply plugin: 'maven'
@@ -28,7 +28,7 @@ artifacts {
 
 ext.versions=[
   tapestry: '5.4.3',
-  geb: '1.1.1',
+  geb: '2.0',
   spock: '1.1-groovy-2.4',
   selenium: '3.6.0']
 
