@@ -1,11 +1,11 @@
 plugins {
-    id "com.jfrog.bintray" version "1.7.3"
+    id "com.jfrog.bintray" version "1.8.0"
 }
 
 description = "Utilities for Geb-based browser tests of Tapestry applications"
 
 group = "de.eddyson"
-version = "0.39.0"
+version = "0.40.0"
 
 apply plugin: 'groovy'
 apply plugin: 'maven'
@@ -30,7 +30,7 @@ ext.versions=[
   tapestry: '5.4.3',
   geb: '2.0',
   spock: '1.1-groovy-2.4',
-  selenium: '3.6.0']
+  selenium: '3.7.0']
 
 dependencies {
    compile "org.apache.tapestry:tapestry-runner:$versions.tapestry"
