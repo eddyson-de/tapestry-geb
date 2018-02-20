@@ -41,7 +41,7 @@ environments {
 }
 ```
 
-### `src/test/groovy/org/exaple/app/integration/SimpleTest.groovy`:
+### `src/test/groovy/org/example/app/integration/SimpleTest.groovy`:
 ```groovy
 package org.example.app.integration
 
