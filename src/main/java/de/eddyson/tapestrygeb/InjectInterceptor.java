@@ -3,15 +3,10 @@ package de.eddyson.tapestrygeb;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-import javax.servlet.ServletContext;
-
-import org.apache.tapestry5.TapestryFilter;
 import org.apache.tapestry5.ioc.AnnotationProvider;
-import org.apache.tapestry5.ioc.Registry;
 import org.apache.tapestry5.ioc.annotations.Autobuild;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.InjectService;
-import org.eclipse.jetty.webapp.WebAppContext;
 import org.spockframework.runtime.extension.AbstractMethodInterceptor;
 import org.spockframework.runtime.extension.IMethodInvocation;
 import org.spockframework.runtime.model.FieldInfo;
@@ -48,23 +43,16 @@ public class InjectInterceptor extends AbstractMethodInterceptor {
           || ReflectionUtil.isAnnotationPresent(rawField, "javax.inject.Inject")
           || rawField.isAnnotationPresent(Autobuild.class))
           && rawField.isAnnotationPresent(Shared.class) == sharedFields) {
-        Object value = getRegistry().getObject(rawField.getType(), createAnnotationProvider(field));
+        Object value = JettyExtension.getRegistry().getObject(rawField.getType(), createAnnotationProvider(field));
         rawField.setAccessible(true);
         rawField.set(target, value);
       } else if (rawField.isAnnotationPresent(InjectService.class)) {
         String serviceName = rawField.getAnnotation(InjectService.class).value();
-        Object value = getRegistry().getService(serviceName, rawField.getType());
+        Object value = JettyExtension.getRegistry().getService(serviceName, rawField.getType());
         rawField.setAccessible(true);
         rawField.set(target, value);
       }
     }
-  }
-
-  private Registry getRegistry() {
-    WebAppContext webappContext = (WebAppContext) JettyExtension.runner.getServer().getHandler();
-    ServletContext servletContext = webappContext.getServletContext();
-    Registry registry = (Registry) servletContext.getAttribute(TapestryFilter.REGISTRY_CONTEXT_NAME);
-    return registry;
   }
 
   private static AnnotationProvider createAnnotationProvider(final FieldInfo field) {

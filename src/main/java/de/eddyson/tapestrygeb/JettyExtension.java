@@ -1,11 +1,16 @@
 package de.eddyson.tapestrygeb;
 
+import org.apache.tapestry5.TapestryFilter;
+import org.apache.tapestry5.ioc.Registry;
 import org.apache.tapestry5.test.Jetty7Runner;
+import org.eclipse.jetty.webapp.WebAppContext;
 import org.spockframework.runtime.AbstractRunListener;
 import org.spockframework.runtime.extension.AbstractAnnotationDrivenExtension;
 import org.spockframework.runtime.extension.IMethodInterceptor;
 import org.spockframework.runtime.model.FeatureInfo;
 import org.spockframework.runtime.model.SpecInfo;
+
+import javax.servlet.ServletContext;
 
 public class JettyExtension extends AbstractAnnotationDrivenExtension<RunJetty> {
 
@@ -14,6 +19,12 @@ public class JettyExtension extends AbstractAnnotationDrivenExtension<RunJetty> 
   static Jetty7Runner runner = null;
 
   private static boolean shutdownHookAdded = false;
+
+  static Registry getRegistry() {
+    WebAppContext webappContext = (WebAppContext) runner.getServer().getHandler();
+    ServletContext servletContext = webappContext.getServletContext();
+    return (Registry) servletContext.getAttribute(TapestryFilter.REGISTRY_CONTEXT_NAME);
+  }
 
   @Override
   public void visitSpec(final SpecInfo spec) {
