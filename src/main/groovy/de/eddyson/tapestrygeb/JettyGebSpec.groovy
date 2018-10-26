@@ -2,11 +2,7 @@ package de.eddyson.tapestrygeb
 
 import static org.openqa.selenium.logging.LogType.BROWSER
 
-import javax.servlet.ServletContext;
-
-import org.apache.tapestry5.TapestryFilter;
-import org.apache.tapestry5.ioc.Registry;
-import org.eclipse.jetty.webapp.WebAppContext;
+import org.apache.tapestry5.ioc.Registry
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -20,13 +16,11 @@ abstract class JettyGebSpec extends GebReportingSpec {
   protected static Logger logger = LoggerFactory.getLogger(JettyGebSpec)
 
   Registry getRegistry(){
-    WebAppContext webappContext = (WebAppContext) JettyExtension.runner.server.handler
-    ServletContext servletContext = webappContext.getServletContext()
-    (Registry) servletContext.getAttribute(TapestryFilter.REGISTRY_CONTEXT_NAME)
+    return JettyExtension.getRegistry()
   }
 
   def getService(Class serviceInterface){
-    getRegistry().getService(serviceInterface)
+    return getRegistry().getService(serviceInterface)
   }
 
   def setup() {
