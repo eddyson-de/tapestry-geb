@@ -3,7 +3,7 @@ package de.eddyson.tapestrygeb;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-import org.apache.tapestry5.commons.AnnotationProvider;
+import org.apache.tapestry5.ioc.AnnotationProvider;
 import org.apache.tapestry5.ioc.annotations.Autobuild;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.InjectService;
