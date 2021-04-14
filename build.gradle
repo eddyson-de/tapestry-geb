@@ -1,6 +1,7 @@
 plugins {
   id "java"
   id "groovy"
+  id "maven-publish"
 }
 
 description = "Utilities for Geb-based browser tests of Tapestry applications"
@@ -38,4 +39,13 @@ dependencies {
   implementation "org.gebish:geb-spock:$versions.geb"
   implementation "org.spockframework:spock-core:$versions.spock"
   implementation "org.seleniumhq.selenium:selenium-support:$versions.selenium"
+}
+
+publishing {
+  publications {
+    maven(MavenPublication) {
+      from components.java
+      artifact tasks.sourceJar
+    }
+  }
 }
