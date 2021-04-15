@@ -11,3 +11,5 @@ gradle-app.setting
 /.project
 /.classpath
 /.settings/
+
+.idea/

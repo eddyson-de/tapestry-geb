@@ -2,7 +2,7 @@ package de.eddyson.tapestrygeb;
 
 import org.apache.tapestry5.TapestryFilter;
 import org.apache.tapestry5.ioc.Registry;
-import org.apache.tapestry5.test.Jetty7Runner;
+import org.apache.tapestry5.test.JettyRunner;
 import org.eclipse.jetty.webapp.WebAppContext;
 import org.spockframework.runtime.AbstractRunListener;
 import org.spockframework.runtime.extension.AbstractAnnotationDrivenExtension;
@@ -16,7 +16,7 @@ public class JettyExtension extends AbstractAnnotationDrivenExtension<RunJetty> 
 
   private boolean isSpecAnnotated;
 
-  static Jetty7Runner runner = null;
+  static JettyRunner runner = null;
 
   private static boolean shutdownHookAdded = false;
 
@@ -93,9 +93,9 @@ public class JettyExtension extends AbstractAnnotationDrivenExtension<RunJetty> 
     });
   }
 
-  private NonExpandingJetty7Runner createRunner() {
+  private NonExpandingJettyRunner createRunner() {
     try {
-      NonExpandingJetty7Runner runner = new NonExpandingJetty7Runner();
+      NonExpandingJettyRunner runner = new NonExpandingJettyRunner();
 
       String webappLocationProperty = assertSystemPropertySet("webappLocation");
       String jettyPortProperty = assertSystemPropertySet("jettyPort");

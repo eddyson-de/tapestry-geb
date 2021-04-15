@@ -2,9 +2,9 @@ package de.eddyson.tapestrygeb;
 
 import java.io.File;
 
-import org.apache.tapestry5.test.Jetty7Runner;
+import org.apache.tapestry5.test.JettyRunner;
 
-public class NonExpandingJetty7Runner extends Jetty7Runner {
+public class NonExpandingJettyRunner extends JettyRunner {
 
   @Override
   protected String expand(final String moduleLocalPath) {
