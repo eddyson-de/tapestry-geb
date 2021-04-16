@@ -11,11 +11,11 @@ A basic usage example to load an application's Index page and check the page tit
 ### `build.gradle`:
 ```groovy
 repositories {
-  mavenCentral()
+  maven { url "https://jitpack.io" }
 }
 
 dependencies {
-  testImplementation 'de.eddyson:tapestry-geb:0.45.0'
+  testImplementation "com.github.eddyson-de:tapestry-geb:0.45.2"
   testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:3.141.59"
 }
 
