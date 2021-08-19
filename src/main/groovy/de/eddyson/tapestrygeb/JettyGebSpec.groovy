@@ -15,11 +15,11 @@ abstract class JettyGebSpec extends GebReportingSpec {
 
   protected static Logger logger = LoggerFactory.getLogger(JettyGebSpec)
 
-  Registry getRegistry(){
+  static Registry getRegistry(){
     return JettyExtension.getRegistry()
   }
 
-  def getService(Class serviceInterface){
+  static def getService(Class serviceInterface){
     return getRegistry().getService(serviceInterface)
   }
 

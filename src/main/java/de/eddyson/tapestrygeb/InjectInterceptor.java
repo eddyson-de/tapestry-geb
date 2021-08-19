@@ -1,9 +1,6 @@
 package de.eddyson.tapestrygeb;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
-
-import org.apache.tapestry5.ioc.AnnotationProvider;
+import org.apache.tapestry5.commons.AnnotationProvider;
 import org.apache.tapestry5.ioc.annotations.Autobuild;
 import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.ioc.annotations.InjectService;
@@ -12,8 +9,10 @@ import org.spockframework.runtime.extension.IMethodInvocation;
 import org.spockframework.runtime.model.FieldInfo;
 import org.spockframework.runtime.model.SpecInfo;
 import org.spockframework.util.ReflectionUtil;
-
 import spock.lang.Shared;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 
 public class InjectInterceptor extends AbstractMethodInterceptor {
 
