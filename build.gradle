@@ -28,15 +28,18 @@ artifacts {
   archives sourceJar
 }
 
-ext.versions=[
-  tapestry: '5.7.3',
+ext.versions = [
+  tapestry: '5.8.2',
   geb: '4.1',
-  selenium: '3.141.59'
+  selenium: '3.141.59',
+  jetty: '8.1.19.v20160209' // match version from tapestry-runner
 ]
 
 dependencies {
   implementation "org.apache.tapestry:tapestry-runner:$versions.tapestry"
   implementation "org.apache.tapestry:tapestry-core:$versions.tapestry"
+  implementation "org.eclipse.jetty:jetty-server:$versions.jetty"
+  implementation "org.eclipse.jetty:jetty-webapp:$versions.jetty"
   implementation "org.gebish:geb-spock:$versions.geb"
   implementation "org.seleniumhq.selenium:selenium-support:$versions.selenium"
 }
