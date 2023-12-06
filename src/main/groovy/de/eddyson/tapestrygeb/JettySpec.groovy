@@ -1,7 +1,7 @@
 package de.eddyson.tapestrygeb
 
-import spock.lang.Specification
 import org.apache.tapestry5.ioc.Registry
+import spock.lang.Specification
 
 @RunJetty
 abstract class JettySpec extends Specification {

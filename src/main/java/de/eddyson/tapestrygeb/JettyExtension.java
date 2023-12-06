@@ -2,17 +2,14 @@ package de.eddyson.tapestrygeb;
 
 import org.apache.tapestry5.TapestryFilter;
 import org.apache.tapestry5.ioc.Registry;
-import org.apache.tapestry5.test.JettyRunner;
-import org.eclipse.jetty.webapp.WebAppContext;
+import org.eclipse.jetty.server.handler.ContextHandler;
 import org.spockframework.runtime.AbstractRunListener;
-import org.spockframework.runtime.extension.AbstractAnnotationDrivenExtension;
+import org.spockframework.runtime.extension.IAnnotationDrivenExtension;
 import org.spockframework.runtime.extension.IMethodInterceptor;
 import org.spockframework.runtime.model.FeatureInfo;
 import org.spockframework.runtime.model.SpecInfo;
 
-import javax.servlet.ServletContext;
-
-public class JettyExtension extends AbstractAnnotationDrivenExtension<RunJetty> {
+public class JettyExtension implements IAnnotationDrivenExtension<RunJetty> {
 
   private boolean isSpecAnnotated;
 
@@ -21,18 +18,16 @@ public class JettyExtension extends AbstractAnnotationDrivenExtension<RunJetty> 
   private static boolean shutdownHookAdded = false;
 
   static Registry getRegistry() {
-    WebAppContext webappContext = (WebAppContext) runner.getServer().getHandler();
-    ServletContext servletContext = webappContext.getServletContext();
-    return (Registry) servletContext.getAttribute(TapestryFilter.REGISTRY_CONTEXT_NAME);
+    ContextHandler contextHandler = (ContextHandler) runner.getServer().getHandler();
+    var context = contextHandler.getContext();
+    return (Registry) context.getAttribute(TapestryFilter.REGISTRY_CONTEXT_NAME);
   }
 
   @Override
   public void visitSpec(final SpecInfo spec) {
-
     IMethodInterceptor interceptor = new InjectInterceptor(spec);
     spec.addSharedInitializerInterceptor(interceptor);
     spec.addInitializerInterceptor(interceptor);
-    super.visitSpec(spec);
   }
 
   @Override
@@ -93,14 +88,15 @@ public class JettyExtension extends AbstractAnnotationDrivenExtension<RunJetty> 
     });
   }
 
-  private NonExpandingJettyRunner createRunner() {
+  private JettyRunner createRunner() {
     try {
-      NonExpandingJettyRunner runner = new NonExpandingJettyRunner();
+      JettyRunner runner = new de.eddyson.tapestrygeb.JettyRunner();
 
       String webappLocationProperty = assertSystemPropertySet("webappLocation");
       String jettyPortProperty = assertSystemPropertySet("jettyPort");
 
-      runner.configure(webappLocationProperty, "", Integer.parseInt(jettyPortProperty), -1).start();
+      runner.configure(webappLocationProperty, "", Integer.parseInt(jettyPortProperty));
+      runner.start();
       return runner;
     } catch (Exception e) {
       throw new RuntimeException(e);

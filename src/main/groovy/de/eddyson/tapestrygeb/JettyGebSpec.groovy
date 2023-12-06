@@ -1,13 +1,12 @@
 package de.eddyson.tapestrygeb
 
-import static org.openqa.selenium.logging.LogType.BROWSER
-
+import geb.spock.GebReportingSpec
+import groovy.transform.TypeChecked
 import org.apache.tapestry5.ioc.Registry
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
-import geb.spock.GebReportingSpec
-import groovy.transform.TypeChecked
+import static org.openqa.selenium.logging.LogType.BROWSER
 
 @RunJetty
 @TypeChecked
@@ -28,11 +27,11 @@ abstract class JettyGebSpec extends GebReportingSpec {
   }
 
   protected RunJetty getRunJettyAnnotation() {
-    RunJetty runJetty = this.class.getAnnotation(RunJetty);
+    RunJetty runJetty = this.class.getAnnotation(RunJetty)
     if (runJetty == null) {
-      runJetty = JettyGebSpec.getAnnotation(RunJetty.class);
+      runJetty = JettyGebSpec.getAnnotation(RunJetty.class)
     }
-    return runJetty;
+    return runJetty
   }
 
   // from https://gist.github.com/antony/5bc8d768946972ab0a2bfca57b857313

@@ -8,6 +8,6 @@ abstract class TapestryPage extends Page {
   public void onLoad(Page previousPage) {
     waitFor { $('body').@'data-page-initialized' == 'true' }
 
-    super.onLoad(previousPage);
+    super.onLoad(previousPage)
   }
 }
