@@ -31,6 +31,17 @@ dependencies {
   implementation "org.eclipse.jetty.ee8:jetty-ee8-webapp:$versions.jetty" // servlet 4.x
   implementation "org.gebish:geb-spock:6.0"
   implementation "org.seleniumhq.selenium:selenium-support:4.15.0"
+
+  testImplementation "io.github.bonigarcia:webdrivermanager:5.6.2"
+  testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:4.15.0"
+  testImplementation "org.tynamo:tapestry-resteasy:0.7.0"
+}
+
+test {
+  useJUnitPlatform()
+
+  systemProperty "webappLocation", "src/test/webapp/"
+  systemProperty "jettyPort", "40258"
 }
 
 publishing {

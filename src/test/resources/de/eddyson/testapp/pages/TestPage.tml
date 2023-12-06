@@ -1,0 +1,15 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_4.xsd">
+  <head>
+    <title>TestPage</title>
+    <style>
+      pre {
+        width: 50%;
+        height: 50%;
+        margin: 1rem auto;
+      }
+    </style>
+  </head>
+  <body>
+    <pre>${test}</pre>
+  </body>
+</html>
