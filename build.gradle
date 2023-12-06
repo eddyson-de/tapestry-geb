@@ -7,7 +7,7 @@ plugins {
 description = "Utilities for Geb-based browser tests of Tapestry applications"
 
 group = "de.eddyson"
-version = "0.47.0"
+version = "0.48.0"
 
 repositories {
   mavenCentral()
