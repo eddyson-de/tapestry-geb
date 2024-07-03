@@ -7,33 +7,32 @@ plugins {
 description = "Utilities for Geb-based browser tests of Tapestry applications"
 
 group = "de.eddyson"
-version = "0.48.0"
+version = "0.49.0"
 
 repositories {
   mavenCentral()
 }
 
 java {
-  sourceCompatibility = JavaVersion.VERSION_11
-  targetCompatibility = JavaVersion.VERSION_11
+  sourceCompatibility = JavaVersion.VERSION_17
+  targetCompatibility = JavaVersion.VERSION_17
 
   withSourcesJar()
 }
 
 ext.versions = [
-  tapestry: '5.8.3',
-  jetty: '12.0.4'
+  tapestry: '5.8.6',
+  jetty: '12.0.10'
 ]
 
 dependencies {
   implementation "org.apache.tapestry:tapestry-core:$versions.tapestry"
   implementation "org.eclipse.jetty:jetty-server:$versions.jetty"
   implementation "org.eclipse.jetty.ee8:jetty-ee8-webapp:$versions.jetty" // servlet 4.x
-  implementation "org.gebish:geb-spock:6.0"
-  implementation "org.seleniumhq.selenium:selenium-support:4.15.0"
+  implementation "org.gebish:geb-spock:7.0"
+  implementation "org.seleniumhq.selenium:selenium-support:4.22.0"
 
-  testImplementation "io.github.bonigarcia:webdrivermanager:5.6.2"
-  testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:4.15.0"
+  testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:4.22.0"
   testImplementation "org.tynamo:tapestry-resteasy:0.7.0"
 }
 
