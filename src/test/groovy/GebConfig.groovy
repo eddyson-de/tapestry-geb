@@ -1,12 +1,12 @@
-import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.chrome.ChromeDriver
 
 reportsDir = "build/reports/geb"
 baseUrl = "http://localhost:${System.getProperty("jettyPort")}/"
 
 environments {
-  "firefox" {
+  "chrome" {
     driver = {
-      new FirefoxDriver()
+      new ChromeDriver()
     }
   }
 }
