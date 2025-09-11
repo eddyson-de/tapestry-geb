@@ -15,7 +15,7 @@ repositories {
 }
 
 dependencies {
-  testImplementation "com.github.eddyson-de:tapestry-geb:0.50.0"
+  testImplementation "com.github.eddyson-de:tapestry-geb:0.51.0"
   testImplementation "org.seleniumhq.selenium:selenium-firefox-driver:4.30.0"
 }
 
